@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DecimalToBinary</string>
+    <string-array name="spinner_values">
+        <item>Decimal to Binary</item>
+        <item>Binary to Decimal</item>
+    </string-array>
+</resources>
