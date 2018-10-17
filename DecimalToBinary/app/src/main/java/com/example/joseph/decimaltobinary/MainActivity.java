@@ -35,8 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         convert_button = findViewById(R.id.convert_button);
 
-
-
+        
         convert_button.setOnClickListener(this);
     }
 
