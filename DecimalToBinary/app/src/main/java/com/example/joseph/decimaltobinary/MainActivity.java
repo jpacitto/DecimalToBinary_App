@@ -11,9 +11,6 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
-    private TextView display_conversion;
-    private TextView solution;
-
     private EditText number_input;
 
     private Spinner conversionMethod;
@@ -26,16 +23,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        display_conversion = findViewById(R.id.display_conversion);
-        solution = findViewById(R.id.solution);
-
         number_input = findViewById(R.id.number_input);
 
         conversionMethod = findViewById(R.id.conversionMethod);
 
         convert_button = findViewById(R.id.convert_button);
 
-        
+
         convert_button.setOnClickListener(this);
     }
 
@@ -43,36 +37,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         if(view == convert_button)
         {
-            convertNumber();
+            String conversion = conversionMethod.getSelectedItem().toString();
+            String number = number_input.getText().toString().trim();
+
+            Intent intent = new Intent(MainActivity.this, solution.class);
+
+            intent.putExtra("conversion", conversion);
+            intent.putExtra("number", number);
+
+            startActivity(intent);
+            finish();
         }
-    }
-
-    private void convertNumber()
-    {
-        String number = number_input.getText().toString().trim();
-        String method = conversionMethod.getSelectedItem().toString();
-
-        if(method.equals("Binary to Decimal"))
-        {
-            binaryToDecimal(number);
-        }
-        else if(method.equals("Decimal to Binary"))
-        {
-            decimalToBinary(number);
-        }
-    }
-
-    private void binaryToDecimal(String number)
-    {
-
-        int decimalNum = Integer.parseInt(number, 2);
-        solution.setText(Integer.toString(decimalNum));
-    }
-
-    private void decimalToBinary(String number)
-    {
-        int decimal = Integer.parseInt(number);
-        String binary = Integer.toBinaryString(decimal);
-        solution.setText(binary);
     }
 }
